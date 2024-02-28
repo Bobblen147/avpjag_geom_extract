@@ -33,26 +33,47 @@ IE Sector 0,0 ... sector 63,0 then sector 0,1 ... sector 63,1 all the way throug
 
 
 This script reads these bytes and produces text codes in the following format
+
 aabbcdefgh
+
+
 aa = x co-ordinate of sector
+
 bb = y co-ordinate of sector
+
 c = left hand wall definition (assuming the player is facing 'north' towards the top of the grid)
+
 d = front wall definition
+
 e = right hand wall definition
+
 f = back wall definition
+
 g = ceiling definition
+
 h = floor definition
 
 each face can be defined as any of the following characters
+
 L standard left hand wall
+
 F standard front wall
+
 R standard right hand wall
+
 B standard back wall
+
 p pillars/wall struts on both sides
+
 l pillar/wall strut on left side only
+
 r pillar/wall strut on right side only
+
 d door
+
 x open space
+
 C ceiling
+
 F floor
 
