@@ -1,0 +1,100 @@
+Avp Jag Map Layout Format Notes
+WIP - still lots of bytes to identify in levels that aren't Sublevel 3
+
+maze data starts at 0x0004FC00
+
+there is an 8 byte header directly above this
+it has number of sectors in the x and y directions as the first 4 bytes
+
+for sub level 3, this is 0x40 x 0x40 = 0x1000 (4096) sectors in the grid
+
+each sector is defined by 8 bytes
+so to know how many bytes to dump just multiply by 0x8 - 0x40 x 0x40 x 0x8 = 0x8000 (32768)
+
+The grid is laid out with sector 0,0 in the top left, and the data is stored as rows running from left to right. 
+IE Sector 0,0 ... sector 63,0 then sector 0,1 ... sector 63,1 
+and so on all the way through to sector 63,63. 
+Each sector is described by 8 bytes.
+
+So to find the offset for the starting sector in the map data
+Using debug mode cheat, the marine start sector is dec 36,10 (ie x = 36, y = 10)
+0x4FC00 + ((0x40 * 0x8 * 0a) + (0x24 * 0x8) //IE find the 10th row starting offset, then the 36th sector in that row
+So 0x00051120 is marine start in sub level 3
+
+
+8 bytes define a sector using the following format:
+
+a b c d e f g h
+
+Assuming the player is facing 'north' towards the top of the grid, they have the following definitions
+
+a: left side wall definition (each byte represents a different wall texture / door / strut. Can also be empty)
+b: front side wall definition
+c: right side wall definition
+d: back side wall definition
+e: ceiling definition definition
+f: floor definition
+g: 1st flag
+h: 2nd flag
+
+
+Bytes identified so far
+Texture names based on the pack available here
+https://forums.atariage.com/topic/246100-retrieving-graphics-from-avsp/?do=findComment&comment=3853739
+
+
+Walls
+0x00 no texture, completely open
+0x01 sub level 3 text wall
+0x02 elevator text wall
+0x03 marine elevator wall back
+0x04 marine elevator wall sides
+0x05 marine computer
+0x06 marine wall vent
+0x07 marine conduit wall
+0x08 marine conduit wall
+0x09 marine x wall
+0x0a airlock text wall
+0x0b marine green x wall
+0x0c marine storage conduit wall
+0x0d marine storage wall
+0x0e canteen txt wall
+0x10 barracks text wall
+0x11 petty officers area wall
+
+Doors
+0x20 marine door
+0x28 marine airlock door
+0x30 marine green grate door
+0x40 marine elevator door
+0x50 marine green door
+0x58 marine marine hex door
+
+Wall struts (not actually impassable walls, just decoration)
+marine passage conduit texture covers 1/8 of the horizontal distance on both sides and you can pass through it.
+marine passage stripes texture covers 1/5
+0x68 marine passage conduit (only draw left side)
+0x78 marine passage conduit (draw both sides)
+0x84 marine elevator wall sides (horizontally flipped)
+0xE8 marine passage conduit (only draw right side)
+
+Ceilings and floors use a separate smaller list of bytes
+Ceilings
+0x00 marine elevator door (only used outside the boundary walls of the map)
+0x01 marine ceiling
+0x03 marine elevator ceiling
+0x05 marine green ceiling
+
+Floors
+0x00 marine elevator door (only used outside the boundary walls of the map)
+0x02 marine floor
+0x04 marine elevator floor
+0x06 marine green floor
+
+1st Flag
+0x00 nothing
+0x30 if the left wall is a door and is open, this is set
+
+2nd Flag
+0x00 nothing
+0x34 if the front wall is a door and is open, this is set
