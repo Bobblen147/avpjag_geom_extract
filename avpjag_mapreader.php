@@ -15,8 +15,8 @@ ini_set('memory_limit','128M');
 
 $type = 'textfile'; //currently only textfile
 
-$filename = 'SUBLEVEL3.BIN';
-$bin = fopen("D:\\Maps\\".$filename, "r");
+$filename = 'airduct5c.BIN';
+$bin = fopen("D:\\Noesis\\".$filename, "r");
 
 $length = 64; //get from header
 $width = 64; //get from header
@@ -68,16 +68,16 @@ if( $type == 'textfile' ) {
 			{
 			switch(true)
 				{
-					case($side1 == 32 || $side1 == 40 || $side1 == 48  || $side1 == 64 || $side1 == 80 || $side1 == 88):
+					case($side1 == 32 || $side1 == 40 || $side1 == 48  || $side1 == 64 || $side1 == 72 || $side1 == 80 || $side1 == 88 || $side1 == 200):
 						echo "d"; //doors
 						break;
-					case($side1 == 104):
+					case($side1 == 104 || $side1 == 105 || $side1 == 112 ):
 						echo "l"; //pillar left
 						break;
-					case($side1 == 120):
+					case($side1 == 120 || $side1 == 121):
 						echo "p"; //pillars both
 						break;
-					case($side1 == 232):
+					case($side1 == 232 || $side1 == 233 || $side1 == 240 ):
 						echo "r"; //pillar right
 						break;
 					default:
@@ -90,16 +90,16 @@ if( $type == 'textfile' ) {
 			{
 			switch(true)
 				{
-					case($side2 == 32 || $side2 == 40 || $side2 == 48  || $side2 == 64 || $side2 == 80 || $side2 == 88):
+					case($side2 == 32 || $side2 == 40 || $side2 == 48  || $side2 == 64 || $side2 == 72 || $side2 == 80 || $side2 == 88 || $side2 == 200):
 						echo "d"; //doors
 						break;
-					case($side2 == 104):
+					case($side2 == 104 || $side2 == 105 || $side2 == 112):
 						echo "l"; //pillar left
 						break;
-					case($side2 == 120):
+					case($side2 == 120 || $side2 == 121):
 						echo "p"; //pillars both
 						break;
-					case($side2 == 232):
+					case($side2 == 232 || $side2 == 233 || $side2 == 240):
 						echo "r"; //pillar right
 						break;
 					default:
@@ -112,16 +112,16 @@ if( $type == 'textfile' ) {
 			{
 			switch(true)
 				{
-					case($side3 == 32 || $side3 == 40 || $side3 == 48  || $side3 == 64 || $side3 == 80 || $side3 == 88):
+					case($side3 == 32 || $side3 == 40 || $side3 == 48  || $side3 == 64 || $side3 == 72 || $side3 == 80 || $side3 == 88 || $side3 == 200):
 						echo "d"; //doors
 						break;
-					case($side3 == 104):
+					case($side3 == 104 || $side3 == 105 || $side3 == 112):
 						echo "l"; //pillar left
 						break;
-					case($side3 == 120):
+					case($side3 == 120 || $side3 == 121):
 						echo "p"; //pillars both
 						break;
-					case($side3 == 232):
+					case($side3 == 232 || $side3 == 233 || $side3 == 240):
 						echo "r"; //pillar right
 						break;
 					default:
@@ -134,16 +134,16 @@ if( $type == 'textfile' ) {
 			{
 			switch(true)
 				{
-					case($side4 == 32 || $side4 == 40 || $side4 == 48  || $side4 == 64 || $side4 == 80 || $side4 == 88):
+					case($side4 == 32 || $side4 == 40 || $side4 == 48  || $side4 == 64 || $side4 == 72 || $side4 == 80 || $side4 == 88 || $side4 == 200):
 						echo "d"; //doors
 						break;
-					case($side4 == 104):
+					case($side4 == 104 || $side4 == 105 || $side4 == 112):
 						echo "l"; //pillar left
 						break;
-					case($side4 == 120):
+					case($side4 == 120 || $side4 == 121):
 						echo "p"; //pillars both
 						break;
-					case($side4 == 232):
+					case($side4 == 232 || $side4 == 233 || $side4 == 240):
 						echo "r"; //pillar right
 						break;
 					default:

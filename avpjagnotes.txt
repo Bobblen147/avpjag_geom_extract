@@ -17,8 +17,10 @@ and so on all the way through to sector 63,63.
 Each sector is described by 8 bytes.
 
 So to find the offset for the starting sector in the map data
-Using debug mode cheat, the marine start sector is dec 36,10 (ie x = 36, y = 10)
-0x4FC00 + ((0x40 * 0x8 * 0a) + (0x24 * 0x8) //IE find the 10th row starting offset, then the 36th sector in that row
+Using debug mode cheat, the marine start sector is (decimal) 36,10 (ie x = 36, y = 10)
+						  Y              X
+0x4FC00 + ((0x40 * 0x8 * 0a) + (0x8 * 0x24) 
+//IE find the 10th row starting offset, then the 36th sector in that row
 So 0x00051120 is marine start in sub level 3
 
 
@@ -59,24 +61,33 @@ Walls
 0x0c marine storage conduit wall
 0x0d marine storage wall
 0x0e canteen txt wall
+0x0f marine medical wall
 0x10 barracks text wall
 0x11 petty officers area wall
+0x1a marine medical window
+0x84 marine elevator wall sides (horizontally flipped)
 
 Doors
 0x20 marine door
 0x28 marine airlock door
-0x30 marine green grate door
+0x30 marine green grate door / marine medical door
 0x40 marine elevator door
+0x48 marine door wide (left)
 0x50 marine green door
 0x58 marine marine hex door
+0xc8 marine door wide (right)
 
 Wall struts (not actually impassable walls, just decoration)
 marine passage conduit texture covers 1/8 of the horizontal distance on both sides and you can pass through it.
 marine passage stripes texture covers 1/5
 0x68 marine passage conduit (only draw left side)
+0x69 marine passage stripes (only draw left side)
+0x70 alien wide passage (left)
 0x78 marine passage conduit (draw both sides)
-0x84 marine elevator wall sides (horizontally flipped)
+0x79 marine passage stripes (draw both sides)
 0xE8 marine passage conduit (only draw right side)
+0xE9 marine passage stripes (only draw right side)
+0xf0 alien wide passage (right)
 
 Ceilings and floors use a separate smaller list of bytes
 Ceilings
@@ -84,12 +95,14 @@ Ceilings
 0x01 marine ceiling
 0x03 marine elevator ceiling
 0x05 marine green ceiling
+0x07 marine medical ceiling
 
 Floors
 0x00 marine elevator door (only used outside the boundary walls of the map)
 0x02 marine floor
 0x04 marine elevator floor
 0x06 marine green floor
+0x08 marine medical floor
 
 1st Flag
 0x00 nothing
