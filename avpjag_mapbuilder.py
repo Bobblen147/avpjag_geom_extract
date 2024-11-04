@@ -4,7 +4,7 @@
 
 import bpy
 
-file = open('D:/Maps/sublevel3.txt', 'r')
+file = open('D:/Maps/mymap.txt', 'r')
 lines = file.readlines()
 
 for z in lines:
@@ -32,16 +32,17 @@ for z in lines:
         (8,0,7),#7
         ]
         faces = [
-        (0,4,5,1), #left
-        (1,5,6,2), #front
-        (2,6,7,3), #right 
-        (3,7,4,0), #back
-        (0,1,2,3), #floor 
+        (1,5,4,0), #left
+        (2,6,5,1), #front
+        (3,7,6,2), #right 
+        (0,4,7,3), #back
+        (3,2,1,0), #floor 
         (4,5,6,7), #ceiling
         ]
         
         pillars = {'r','l','p'}
         #define additional verts if sector has pillars
+        #pillar width is currently 1/5 of total width (to match size of striped texture)
         if left in pillars or front in pillars or right in pillars or back in pillars:
             #left side
             verts.append((0,1,0))#8
@@ -67,68 +68,71 @@ for z in lines:
         
         #left side mods
         if left == 'r': #add pillar right
-            faces.remove((0,4,5,1))
-            faces.append((10,11,5,1))
+            faces.remove((1,5,4,0))
+            faces.append((1,5,11,10))
         if left == 'l': #add pillar left
-            faces.remove((0,4,5,1))
-            faces.append((0,4,9,8))            
+            faces.remove((1,5,4,0))
+            faces.append((8,9,4,0))            
         if left == 'p': #add pillar both sides
-            faces.remove((0,4,5,1))
-            faces.append((10,11,5,1)) 
-            faces.append((0,4,9,8)) 
+            faces.remove((1,5,4,0))
+            faces.append((1,5,11,10)) 
+            faces.append((8,9,4,0)) 
         if left == 'x': #leave empty
-            faces.remove((0,4,5,1))
+            faces.remove((1,5,4,0))
         if left == 'd': #door (leave empty for now)
-            faces.remove((0,4,5,1))
+            faces.remove((1,5,4,0))
         
         #front side mods    
         if front == 'r':
-            faces.remove((1,5,6,2))
-            faces.append((14,15,6,2))
+            faces.remove((2,6,5,1))
+            faces.append((2,6,15,14))
         if front == 'l':
-            faces.remove((1,5,6,2))
-            faces.append((13,12,1,5))
+            faces.remove((2,6,5,1))
+            faces.append((5,1,12,13))
         if front == 'p':
-            faces.remove((1,5,6,2))
-            faces.append((14,15,6,2))
-            faces.append((13,12,1,5))
+            faces.remove((2,6,5,1))
+            faces.append((2,6,15,14))
+            faces.append((5,1,12,13))
         if front == 'x':
-            faces.remove((1,5,6,2))
+            faces.remove((2,6,5,1))
         if front == 'd':
-            faces.remove((1,5,6,2))
+            faces.remove((2,6,5,1))
             
         #right side mods    
         if right == 'r':
-            faces.remove((2,6,7,3))
-            faces.append((7,3,18,19))
+            faces.remove((3,7,6,2))
+            faces.append((19,18,3,7))
         if right == 'l':
-            faces.remove((2,6,7,3))
-            faces.append((16,17,6,2))
+            faces.remove((3,7,6,2))
+            faces.append((2,6,17,16))
         if right == 'p':
-            faces.remove((2,6,7,3))
-            faces.append((7,3,18,19))
+            faces.remove((3,7,6,2))
+            faces.append((19,18,3,7))
             faces.append((16,17,6,2))
         if right == 'x':
-            faces.remove((2,6,7,3))
+            faces.remove((3,7,6,2))
         if right == 'd':
-            faces.remove((2,6,7,3))  
+            faces.remove((3,7,6,2))  
         
         #back side mods    
         if back == 'r':
-            faces.remove((3,7,4,0))
-            faces.append((22,23,4,0))
+            faces.remove((0,4,7,3))
+            faces.append((0,4,23,22))
         if back == 'l':
-            faces.remove((3,7,4,0))
-            faces.append((21,20,3,7))
+            faces.remove((0,4,7,3))
+            faces.append((7,3,20,21))
         if back == 'p':
-            faces.remove((3,7,4,0))
-            faces.append((22,23,4,0))
-            faces.append((21,20,3,7))
+            faces.remove((0,4,7,3))
+            faces.append((0,4,23,22))
+            faces.append((7,3,20,21))
         if back == 'x':
-            faces.remove((3,7,4,0))
+            faces.remove((0,4,7,3))
         if back == 'd':
-            faces.remove((3,7,4,0))
+            faces.remove((0,4,7,3))
             
+        #ceiling mods
+        if ceiling == 'x':
+            faces.remove((4,5,6,7))   
         
         
         #Define mesh and object
